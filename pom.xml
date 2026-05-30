@@ -22,7 +22,7 @@
     <inceptionYear>2018</inceptionYear>
     <groupId>io.github.pig-mesh.nacos</groupId>
     <artifactId>nacos-all</artifactId>
-    <version>${revision}</version>
+    <version>3.2.2</version>
     <packaging>pom</packaging>
 
     <name>Alibaba NACOS ${project.version}</name>
@@ -88,7 +88,6 @@
     </issueManagement>
 
     <properties>
-        <revision>3.2.2</revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Compiler settings properties -->
@@ -248,6 +247,8 @@
                         </executions>
                         <configuration>
                             <gpgArguments>
+                                <arg>--batch</arg>
+                                <arg>--yes</arg>
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
                             </gpgArguments>

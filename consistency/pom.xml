@@ -75,7 +75,7 @@
         <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>${revision}</version>
+        <version>3.2.2</version>
     </parent>
     
     <url>https://nacos.io</url>

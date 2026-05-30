@@ -20,7 +20,7 @@
     <parent>
         <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
-        <version>${revision}</version>
+        <version>3.2.2</version>
     </parent>
     
     <modelVersion>4.0.0</modelVersion>
@@ -110,7 +110,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-control-plugin</artifactId>
-            <version>${revision}</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

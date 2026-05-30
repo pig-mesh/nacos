@@ -19,7 +19,7 @@
     <parent>
         <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
-        <version>${revision}</version>
+        <version>3.2.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     

@@ -21,7 +21,7 @@
     <parent>
         <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
-        <version>${revision}</version>
+        <version>3.2.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -175,27 +175,27 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-control-plugin</artifactId>
-            <version>${revision}</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-config-plugin</artifactId>
-            <version>${revision}</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-encryption-plugin</artifactId>
-            <version>${revision}</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-datasource-plugin</artifactId>
-            <version>${revision}</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-custom-environment-plugin</artifactId>
-            <version>${revision}</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
