@@ -25,10 +25,24 @@
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    
+
     <artifactId>nacos-server</artifactId>
     <name>nacos-server ${project.version}</name>
-    
+    <description>Nacos server aggregation module for the PigMesh Nacos distribution.</description>
+    <url>https://github.com/pig-mesh/nacos/tree/develop/server</url>
+
+    <scm>
+        <url>https://github.com/pig-mesh/nacos/tree/develop/server</url>
+        <connection>scm:git:https://github.com/pig-mesh/nacos.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/pig-mesh/nacos.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <central.skipPublishing>false</central.skipPublishing>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

@@ -26,8 +26,21 @@
     <artifactId>nacos-console</artifactId>
     <packaging>jar</packaging>
     <name>nacos-console ${project.version}</name>
-    <url>https://nacos.io</url>
-    
+    <description>Nacos console backend module for the PigMesh Nacos distribution.</description>
+    <url>https://github.com/pig-mesh/nacos/tree/develop/console</url>
+
+    <scm>
+        <url>https://github.com/pig-mesh/nacos/tree/develop/console</url>
+        <connection>scm:git:https://github.com/pig-mesh/nacos.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/pig-mesh/nacos.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <central.skipPublishing>false</central.skipPublishing>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
