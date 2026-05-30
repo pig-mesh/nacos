@@ -20,7 +20,7 @@ import com.alibaba.nacos.common.trace.event.naming.NamingTraceEvent;
 import com.alibaba.nacos.core.trace.NacosCombinedTraceSubscriber;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 /**
  * Naming Trace event initializer.

@@ -33,7 +33,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

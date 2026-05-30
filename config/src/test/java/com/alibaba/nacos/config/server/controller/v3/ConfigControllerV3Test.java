@@ -51,7 +51,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.core.env.StandardEnvironment;
@@ -63,7 +63,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.multipart.MultipartFile;
@@ -95,31 +95,31 @@ class ConfigControllerV3Test {
     
     private MockMvc mockmvc;
     
-    @Mock
+    @MockitoBean
     private ServletContext servletContext;
     
-    @Mock
+    @MockitoBean
     private ConfigInfoPersistService configInfoPersistService;
     
-    @Mock
+    @MockitoBean
     private ConfigInfoBetaPersistService configInfoBetaPersistService;
     
-    @Mock
+    @MockitoBean
     private ConfigInfoGrayPersistService configInfoGrayPersistService;
     
-    @Mock
+    @MockitoBean
     private NamespacePersistService namespacePersistService;
     
-    @Mock
+    @MockitoBean
     private ConfigOperationService configOperationService;
     
-    @Mock
+    @MockitoBean
     private ConfigListenerStateDelegate configListenerStateDelegate;
     
-    @Mock
+    @MockitoBean
     private ConfigDetailService configDetailService;
     
-    @Mock
+    @MockitoBean
     private ConfigMigrateService configMigrateService;
     
     @BeforeEach
@@ -146,7 +146,7 @@ class ConfigControllerV3Test {
     @Test
     void testPublishConfig() throws Exception {
         when(configOperationService.publishConfig(any(), any(), anyString())).thenReturn(true);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(Constants.CONFIG_ADMIN_V3_PATH)
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("content", "test")
@@ -165,7 +165,7 @@ class ConfigControllerV3Test {
     void testGetConfig() throws Exception {
         when(configInfoPersistService.findConfigAllInfo("test", "test", "public"))
             .thenReturn(new ConfigAllInfo());
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH)
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("tag", "");
@@ -179,7 +179,7 @@ class ConfigControllerV3Test {
             any(), any(),
             any())).thenReturn(true);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(Constants.CONFIG_ADMIN_V3_PATH)
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("tag", "");
@@ -207,7 +207,7 @@ class ConfigControllerV3Test {
         Mockito.when(configInfoPersistService.findConfigInfo(eq(2L))).thenReturn(configAllInfo);
         AtomicReference<ConfigDataChangeEvent> reference = new AtomicReference<>();
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(Constants.CONFIG_ADMIN_V3_PATH + "/batch")
                 .param("ids", "1,2");
         
@@ -232,7 +232,7 @@ class ConfigControllerV3Test {
         when(configListenerStateDelegate.getListenerState("test", "test", "public", true))
             .thenReturn(sampleResult);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH + "/listener")
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("sampleTime", "1");
@@ -264,7 +264,7 @@ class ConfigControllerV3Test {
         when(configDetailService.findConfigInfoPage("accurate", 1, 10, "test", "test", "public",
             configAdvanceInfo)).thenReturn(page);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH + "/list")
                 .param("search", "accurate").param("dataId", "test").param("groupName", "test")
                 .param("appName", "")
@@ -301,7 +301,7 @@ class ConfigControllerV3Test {
         when(configDetailService.findConfigInfoPage("blur", 1, 10, "test", "test", "public",
             configAdvanceInfo)).thenReturn(page);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH + "/list")
                 .param("search", "blur").param("dataId", "test").param("groupName", "test")
                 .param("appName", "")
@@ -326,7 +326,7 @@ class ConfigControllerV3Test {
     @Test
     void testStopBeta() throws Exception {
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(Constants.CONFIG_ADMIN_V3_PATH + "/beta")
                 .param("beta", "true").param("dataId", "test").param("groupName", "test")
                 .param("namespaceId", "");
@@ -354,7 +354,7 @@ class ConfigControllerV3Test {
             .thenReturn(
                 configInfoBetaWrapper);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH + "/beta")
                 .param("beta", "true").param("dataId", "test").param("groupName", "test")
                 .param("namespaceId", "");
@@ -379,7 +379,7 @@ class ConfigControllerV3Test {
     @Test
     void testPublishGray() throws Exception {
         when(configOperationService.publishConfigGray(anyString(), any(), any())).thenReturn(true);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(Constants.CONFIG_ADMIN_V3_PATH + "/gray")
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("content", "gray")
@@ -414,7 +414,7 @@ class ConfigControllerV3Test {
             "tagv2_gray")).thenReturn(
                 configInfoGrayWrapper);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH + "/gray")
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("grayName", "tagv2_gray");
@@ -437,7 +437,7 @@ class ConfigControllerV3Test {
         when(configOperationService.deleteConfig(anyString(), anyString(), anyString(), anyString(),
             any(), any(),
             any())).thenReturn(true);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(Constants.CONFIG_ADMIN_V3_PATH + "/gray")
                 .param("dataId", "test").param("groupName", "test").param("namespaceId", "")
                 .param("grayName", "tagv2_gray");
@@ -468,7 +468,7 @@ class ConfigControllerV3Test {
         Mockito.when(configInfoPersistService.findAllConfigInfo4Export(eq(dataId), eq(groupName),
             eq(namespaceId),
             eq(appname), eq(Arrays.asList(1L, 2L)))).thenReturn(dataList);
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .get(Constants.CONFIG_ADMIN_V3_PATH + "/export")
             .param("dataId", dataId).param("groupName", groupName).param("namespaceId", namespaceId)
             .param("appName", appname).param("ids", "1,2");
@@ -508,7 +508,7 @@ class ConfigControllerV3Test {
                 any(),
                 any())).thenReturn(map);
             
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(
+            RequestBuilder builder = MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import").file(file).param("src_user", "test")
                 .param("namespace", "public").param("policy", "ABORT");
             
@@ -555,7 +555,7 @@ class ConfigControllerV3Test {
                 any()))
             .thenReturn(map);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(Constants.CONFIG_ADMIN_V3_PATH + "/clone")
                 .param("clone", "true").param("src_user", "test").param("namespaceId", "public")
                 .param("policy", "ABORT").content(JacksonUtils.toJson(configBeansList))
@@ -576,7 +576,7 @@ class ConfigControllerV3Test {
     void testGetConfigNotFound() throws Exception {
         when(configInfoPersistService.findConfigAllInfo("test", "test", "public"))
             .thenReturn(null);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH)
                 .param("dataId", "test").param("groupName", "test")
                 .param("namespaceId", "");
@@ -590,7 +590,7 @@ class ConfigControllerV3Test {
     
     @Test
     void testPublishConfigMetadata() throws Exception {
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.put(
                 Constants.CONFIG_ADMIN_V3_PATH + "/metadata")
                 .param("dataId", "test").param("groupName", "test")
@@ -605,7 +605,7 @@ class ConfigControllerV3Test {
     @Test
     void testDeleteConfigsWithNullConfigInfo() throws Exception {
         when(configInfoPersistService.findConfigInfo(eq(1L))).thenReturn(null);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(
                 Constants.CONFIG_ADMIN_V3_PATH + "/batch")
                 .param("ids", "1");
@@ -619,7 +619,7 @@ class ConfigControllerV3Test {
     void testDeleteConfigsWithException() throws Exception {
         when(configInfoPersistService.findConfigInfo(eq(1L)))
             .thenThrow(new RuntimeException("error"));
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(
                 Constants.CONFIG_ADMIN_V3_PATH + "/batch")
                 .param("ids", "1");
@@ -633,7 +633,7 @@ class ConfigControllerV3Test {
     void testQueryBetaNotFound() throws Exception {
         when(configInfoGrayPersistService.findConfigInfo4Gray(
             "test", "test", "public", "beta")).thenReturn(null);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.CONFIG_ADMIN_V3_PATH + "/beta")
                 .param("dataId", "test").param("groupName", "test")
                 .param("namespaceId", "");
@@ -650,7 +650,7 @@ class ConfigControllerV3Test {
         doThrow(new RuntimeException("error"))
             .when(configInfoGrayPersistService).removeConfigInfoGray(
                 any(), any(), any(), any(), any(), any());
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.delete(
                 Constants.CONFIG_ADMIN_V3_PATH + "/beta")
                 .param("dataId", "test").param("groupName", "test")
@@ -672,7 +672,7 @@ class ConfigControllerV3Test {
             eq("accurate"), eq(1), eq(10), eq("test"), eq("test"),
             eq("public"), any())).thenReturn(page);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(
                 Constants.CONFIG_ADMIN_V3_PATH + "/list")
                 .param("search", "accurate")
@@ -689,7 +689,7 @@ class ConfigControllerV3Test {
     
     @Test
     void testImportConfigWithNullFile() throws Exception {
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import")
                 .param("src_user", "test")
@@ -707,7 +707,7 @@ class ConfigControllerV3Test {
             .thenReturn(0);
         MockMultipartFile file = new MockMultipartFile(
             "file", "test.zip", "application/zip", "test".getBytes());
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import")
                 .file(file)
@@ -735,7 +735,7 @@ class ConfigControllerV3Test {
     
     @Test
     void testCloneConfigEmpty() throws Exception {
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(
                 Constants.CONFIG_ADMIN_V3_PATH + "/clone")
                 .param("src_user", "test")
@@ -755,7 +755,7 @@ class ConfigControllerV3Test {
         info.setConfigId(1L);
         when(namespacePersistService.tenantInfoCountByTenantId("ns1"))
             .thenReturn(0);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(
                 Constants.CONFIG_ADMIN_V3_PATH + "/clone")
                 .param("src_user", "test")
@@ -806,7 +806,7 @@ class ConfigControllerV3Test {
             when(configInfoPersistService.batchInsertOrUpdate(anyList(), anyString(), anyString(),
                 any(), any())).thenReturn(map);
             
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(
+            RequestBuilder builder = MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import").file(file).param("src_user", "test")
                 .param("namespaceId", "public").param("policy", "ABORT");
             
@@ -841,7 +841,7 @@ class ConfigControllerV3Test {
             zipUtilsMockedStatic.when(() -> ZipUtils.unzip(eq(file.getBytes())))
                 .thenReturn(unziped);
             
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(
+            RequestBuilder builder = MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import").file(file).param("src_user", "test")
                 .param("namespaceId", "").param("policy", "ABORT");
             
@@ -873,7 +873,7 @@ class ConfigControllerV3Test {
             when(namespacePersistService.tenantInfoCountByTenantId("public"))
                 .thenReturn(1);
             
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(
+            RequestBuilder builder = MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import").file(file).param("src_user", "test")
                 .param("namespaceId", "public").param("policy", "ABORT");
             
@@ -893,7 +893,7 @@ class ConfigControllerV3Test {
         when(configInfoPersistService.findAllConfigInfo4Export(
             any(), any(), any(), any(), anyList()))
             .thenReturn(new ArrayList<>());
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(
                 Constants.CONFIG_ADMIN_V3_PATH + "/clone")
                 .param("src_user", "test")
@@ -935,7 +935,7 @@ class ConfigControllerV3Test {
             anyList(), anyString(), anyString(), any(), any()))
             .thenReturn(map);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(Constants.CONFIG_ADMIN_V3_PATH + "/clone")
                 .param("src_user", "").param("namespaceId", "public")
                 .param("policy", "ABORT")
@@ -974,7 +974,7 @@ class ConfigControllerV3Test {
             anyList(), anyString(), anyString(), any(), any()))
             .thenReturn(map);
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(Constants.CONFIG_ADMIN_V3_PATH + "/clone")
                 .param("src_user", "test").param("namespaceId", "public")
                 .param("policy", "ABORT")
@@ -994,7 +994,7 @@ class ConfigControllerV3Test {
             propertyUtilMock.when(PropertyUtil::isGrayCompatibleModel).thenReturn(true);
             ReflectionTestUtils.setField(configControllerV3, "oldTableVersion", true);
             
-            MockHttpServletRequestBuilder builder =
+            RequestBuilder builder =
                 MockMvcRequestBuilders.delete(Constants.CONFIG_ADMIN_V3_PATH + "/beta")
                     .param("dataId", "test").param("groupName", "test")
                     .param("namespaceId", "");
@@ -1038,7 +1038,7 @@ class ConfigControllerV3Test {
                 anyList(), anyString(), anyString(), any(), any()))
                 .thenReturn(map);
             
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(
+            RequestBuilder builder = MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import").file(file)
                 .param("src_user", "")
                 .param("namespaceId", "public").param("policy", "ABORT");
@@ -1071,7 +1071,7 @@ class ConfigControllerV3Test {
             when(namespacePersistService.tenantInfoCountByTenantId("public"))
                 .thenReturn(1);
             
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.multipart(
+            RequestBuilder builder = MockMvcRequestBuilders.multipart(
                 Constants.CONFIG_ADMIN_V3_PATH + "/import").file(file)
                 .param("src_user", "test")
                 .param("namespaceId", "public").param("policy", "ABORT");

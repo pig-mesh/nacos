@@ -19,7 +19,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.alibaba.nacos</groupId>
+        <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -43,7 +43,7 @@
             <artifactId>nacos-consistency</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-persistence</artifactId>
         </dependency>
         
@@ -52,7 +52,7 @@
             <artifactId>nacos-auth</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-trace-plugin</artifactId>
         </dependency>
         
@@ -63,7 +63,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <artifactId>spring-boot-web-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aspectj</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,6 +97,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test-autoconfigure</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -164,27 +173,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-control-plugin</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-config-plugin</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-encryption-plugin</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-datasource-plugin</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-custom-environment-plugin</artifactId>
             <version>${revision}</version>
         </dependency>

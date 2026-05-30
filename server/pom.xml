@@ -20,7 +20,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.alibaba.nacos</groupId>
+        <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
@@ -31,20 +31,24 @@
     
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-naming</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-config</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-istio</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-prometheus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-ldap</artifactId>
         </dependency>
     </dependencies>
 
@@ -56,7 +60,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.alibaba.nacos</groupId>
+                    <groupId>${project.groupId}</groupId>
                     <artifactId>nacos-default-plugin-all</artifactId>
                     <version>${project.version}</version>
                 </dependency>

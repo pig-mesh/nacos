@@ -27,7 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * validated as matching (e.g., passwords {@code "A".repeat(73)} and {@code "A".repeat(80)}
  * would be considered identical).
  *
- * <p>Fix logic: Adds length validation in {@link #matches(CharSequence, String)},
+ * <p>Fix logic: Adds length validation in {@link #matchesNonNull(String, String)},
  * returning false directly if the password length exceeds 72.
  *
  * <p><strong>Recommendation:</strong> It is advised to add password length validation
@@ -40,11 +40,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SafeBcryptPasswordEncoder extends BCryptPasswordEncoder {
     
     @Override
-    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+    protected boolean matchesNonNull(String rawPassword, String encodedPassword) {
         // Reject excessively long passwords immediately
-        if (rawPassword != null && rawPassword.length() > AuthConstants.MAX_PASSWORD_LENGTH) {
+        if (rawPassword.length() > AuthConstants.MAX_PASSWORD_LENGTH) {
             return false;
         }
-        return super.matches(rawPassword, encodedPassword);
+        return super.matchesNonNull(rawPassword, encodedPassword);
     }
 }

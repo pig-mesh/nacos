@@ -37,7 +37,7 @@ import com.alibaba.nacos.plugin.control.tps.request.TpsCheckRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 

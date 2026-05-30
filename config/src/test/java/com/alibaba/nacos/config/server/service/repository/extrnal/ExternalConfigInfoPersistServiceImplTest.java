@@ -42,7 +42,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.dao.CannotAcquireLockException;
@@ -97,18 +97,18 @@ class ExternalConfigInfoPersistServiceImplTest {
     
     MockedStatic<DynamicDataSource> dynamicDataSourceMockedStatic;
     
-    @Mock
+    @MockitoBean
     DynamicDataSource dynamicDataSource;
     
     private ExternalConfigInfoPersistServiceImpl externalConfigInfoPersistService;
     
-    @Mock
+    @MockitoBean
     private HistoryConfigInfoPersistService historyConfigInfoPersistService;
     
-    @Mock
+    @MockitoBean
     private DataSourceService dataSourceService;
     
-    @Mock
+    @MockitoBean
     private JdbcTemplate jdbcTemplate;
     
     private TransactionTemplate transactionTemplate = TestCaseUtils.createMockTransactionTemplate();

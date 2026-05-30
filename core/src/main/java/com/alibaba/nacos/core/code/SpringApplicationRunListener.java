@@ -18,7 +18,7 @@ package com.alibaba.nacos.core.code;
 
 import com.alibaba.nacos.common.spi.NacosServiceLoader;
 import com.alibaba.nacos.core.listener.NacosApplicationListener;
-import org.springframework.boot.ConfigurableBootstrapContext;
+import org.springframework.boot.bootstrap.ConfigurableBootstrapContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;

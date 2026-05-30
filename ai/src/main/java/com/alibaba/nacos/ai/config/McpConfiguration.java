@@ -19,7 +19,7 @@ package com.alibaba.nacos.ai.config;
 import com.alibaba.nacos.core.code.ControllerMethodsCache;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 /**
  * AI MCP spring configuration.

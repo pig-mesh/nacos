@@ -35,7 +35,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,7 +47,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -68,7 +68,7 @@ class ConfigOpsControllerV3Test {
     @InjectMocks
     ConfigOpsControllerV3 configOpsControllerV3;
     
-    @Mock
+    @MockitoBean
     DumpService dumpService;
     
     MockedStatic<DatasourceConfiguration> datasourceConfigurationMockedStatic;
@@ -79,7 +79,7 @@ class ConfigOpsControllerV3Test {
     
     private MockMvc mockMvc;
     
-    @Mock
+    @MockitoBean
     private ServletContext servletContext;
     
     @AfterEach
@@ -104,7 +104,7 @@ class ConfigOpsControllerV3Test {
     @Test
     void testUpdateLocalCacheFromStore() throws Exception {
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/localCache");
         int actualValue = mockMvc.perform(builder).andReturn().getResponse().getStatus();
         assertEquals(200, actualValue);
@@ -113,7 +113,7 @@ class ConfigOpsControllerV3Test {
     @Test
     void testSetLogLevel() throws Exception {
         
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .put(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/log").param("logName", "test")
             .param("logLevel", "test");
         int actualValue = mockMvc.perform(builder).andReturn().getResponse().getStatus();
@@ -134,7 +134,7 @@ class ConfigOpsControllerV3Test {
         when(dataSourceService.getJdbcTemplate()).thenReturn(template);
         when(template.queryForList("SELECT * FROM TEST")).thenReturn(new ArrayList<>());
         
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby")
                 .param("sql", "SELECT * FROM TEST");
         String actualValue =
@@ -153,7 +153,7 @@ class ConfigOpsControllerV3Test {
             .thenReturn(Mockito.mock(DatabaseOperate.class));
         MockMultipartFile file =
             new MockMultipartFile("file", "test.zip", "application/zip", "test".getBytes());
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .multipart(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby/import")
             .file(file);
         int actualValue = mockMvc.perform(builder).andReturn().getResponse().getStatus();
@@ -165,7 +165,7 @@ class ConfigOpsControllerV3Test {
         ConfigCommonConfig.getInstance().setDerbyOpsEnabled(true);
         datasourceConfigurationMockedStatic.when(DatasourceConfiguration::isEmbeddedStorage)
             .thenReturn(false);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(
                 Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby")
                 .param("sql", "SELECT * FROM TEST");
@@ -180,7 +180,7 @@ class ConfigOpsControllerV3Test {
         datasourceConfigurationMockedStatic.when(DatasourceConfiguration::isEmbeddedStorage)
             .thenReturn(true);
         mockLocalDataSource();
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(
                 Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby")
                 .param("sql", "DELETE FROM TEST");
@@ -205,7 +205,7 @@ class ConfigOpsControllerV3Test {
         ConfigCommonConfig.getInstance().setDerbyOpsEnabled(false);
         datasourceConfigurationMockedStatic.when(DatasourceConfiguration::isEmbeddedStorage)
             .thenReturn(true);
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(
                 Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby")
                 .param("sql", "SELECT * FROM TEST");
@@ -217,7 +217,7 @@ class ConfigOpsControllerV3Test {
     @Test
     void testUpdateLocalCacheFromStoreError() throws Exception {
         doThrow(new RuntimeException("dump error")).when(dumpService).dumpAll();
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.post(
                 Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/localCache");
         String actualValue =
@@ -233,7 +233,7 @@ class ConfigOpsControllerV3Test {
         MockMultipartFile file =
             new MockMultipartFile("file", "test.zip", "application/zip",
                 "test".getBytes());
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .multipart(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby/import")
             .file(file);
         int actualValue =
@@ -249,7 +249,7 @@ class ConfigOpsControllerV3Test {
         MockMultipartFile file =
             new MockMultipartFile("file", "test.zip", "application/zip",
                 "test".getBytes());
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .multipart(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby/import")
             .file(file);
         int actualValue =
@@ -273,7 +273,7 @@ class ConfigOpsControllerV3Test {
         String sqlWithLimit =
             "SELECT * FROM TEST OFFSET 0 ROWS FETCH NEXT 100 ROWS ONLY";
         when(template.queryForList(sqlWithLimit)).thenReturn(new ArrayList<>());
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(
                 Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby")
                 .param("sql", sqlWithLimit);
@@ -297,7 +297,7 @@ class ConfigOpsControllerV3Test {
         when(dataSourceService.getJdbcTemplate()).thenReturn(template);
         when(template.queryForList(Mockito.anyString()))
             .thenThrow(new RuntimeException("db error"));
-        MockHttpServletRequestBuilder builder =
+        RequestBuilder builder =
             MockMvcRequestBuilders.get(
                 Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby")
                 .param("sql", "SELECT * FROM TEST");
@@ -312,7 +312,7 @@ class ConfigOpsControllerV3Test {
         try (MockedStatic<LogUtil> logUtilMockedStatic = Mockito.mockStatic(LogUtil.class)) {
             logUtilMockedStatic.when(() -> LogUtil.setLogLevel("test", "INVALID_LEVEL"))
                 .thenThrow(new IllegalArgumentException("invalid"));
-            MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+            RequestBuilder builder = MockMvcRequestBuilders
                 .put(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/log")
                 .param("logName", "test")
                 .param("logLevel", "INVALID_LEVEL");
@@ -342,7 +342,7 @@ class ConfigOpsControllerV3Test {
         MockMultipartFile file =
             new MockMultipartFile("file", "test.sql", "text/plain",
                 "INSERT INTO test VALUES(1)".getBytes());
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .multipart(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby/import")
             .file(file);
         int status = mockMvc.perform(builder).andReturn().getResponse().getStatus();
@@ -367,7 +367,7 @@ class ConfigOpsControllerV3Test {
         MockMultipartFile file =
             new MockMultipartFile("file", "test.sql", "text/plain",
                 "INSERT INTO test VALUES(1)".getBytes());
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
+        RequestBuilder builder = MockMvcRequestBuilders
             .multipart(Constants.OPS_CONTROLLER_V3_ADMIN_PATH + "/derby/import")
             .file(file);
         int status = mockMvc.perform(builder).andReturn().getResponse().getStatus();

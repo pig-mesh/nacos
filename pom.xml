@@ -20,7 +20,7 @@
     
     <modelVersion>4.0.0</modelVersion>
     <inceptionYear>2018</inceptionYear>
-    <groupId>com.alibaba.nacos</groupId>
+    <groupId>io.github.pig-mesh.nacos</groupId>
     <artifactId>nacos-all</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
@@ -128,7 +128,7 @@
         
         <!-- dependency version -->
         <nacos.logback.adapter.version>1.1.4</nacos.logback.adapter.version>
-        <spring-boot-dependencies.version>3.5.14</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>4.0.6</spring-boot-dependencies.version>
         <commons-io.version>2.14.0</commons-io.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <slf4j-api.version>2.0.13</slf4j-api.version>
@@ -161,7 +161,7 @@
         <!-- Maven Central Portal -->
         <central.publishing.maven.version>0.7.0</central.publishing.maven.version>
 
-        <!-- Override micrometer version for Spring Boot 3.5.x compatibility,
+        <!-- Override micrometer version for Spring Boot 4.0.x compatibility,
              see https://github.com/alibaba/nacos/issues/15033 -->
         <micrometer.version>1.15.11</micrometer.version>
         
@@ -758,7 +758,7 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -768,7 +768,7 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-ai</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -783,12 +783,12 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-maintainer-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-logback-adapter-12</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -798,7 +798,7 @@
                 <version>${nacos.logback.adapter.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-log4j2-adapter</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -884,7 +884,7 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-config-plugin</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -894,12 +894,12 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-trace-plugin</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-datasource-plugin</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -929,12 +929,12 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-client-basic</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.nacos</groupId>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>nacos-ai-registry-adaptor</artifactId>
                 <version>${project.version}</version>
             </dependency>

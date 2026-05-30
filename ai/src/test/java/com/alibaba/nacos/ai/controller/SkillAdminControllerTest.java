@@ -34,7 +34,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -80,7 +80,7 @@ class SkillAdminControllerTest {
     
     private ConfigurableEnvironment cachedEnvironment;
     
-    @Mock
+    @MockitoBean
     private SkillOperationService skillOperationService;
     
     @BeforeEach

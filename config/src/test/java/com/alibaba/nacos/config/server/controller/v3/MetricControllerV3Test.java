@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockedStatic;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.Mockito;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.mock.web.MockServletContext;
@@ -78,13 +78,13 @@ class MetricControllerV3Test {
     
     private MockMvc mockMvc;
     
-    @Mock
+    @MockitoBean
     private ServerMemberManager memberManager;
     
-    @Mock
+    @MockitoBean
     private ConnectionManager connectionManager;
     
-    @Mock
+    @MockitoBean
     private ServletContext servletContext;
     
     @BeforeEach

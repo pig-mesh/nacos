@@ -27,7 +27,7 @@ import com.alibaba.nacos.common.utils.StringUtils;
 import com.alibaba.nacos.naming.misc.Loggers;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;

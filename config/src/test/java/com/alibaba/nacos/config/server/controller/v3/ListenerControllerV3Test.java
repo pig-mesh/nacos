@@ -26,7 +26,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -54,10 +54,10 @@ class ListenerControllerV3Test {
     
     private MockMvc mockmvc;
     
-    @Mock
+    @MockitoBean
     private ServletContext servletContext;
     
-    @Mock
+    @MockitoBean
     private ConfigListenerStateDelegate configListenerStateDelegate;
     
     @BeforeEach

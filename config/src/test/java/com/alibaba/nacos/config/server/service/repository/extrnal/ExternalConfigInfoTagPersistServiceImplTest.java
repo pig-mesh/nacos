@@ -32,7 +32,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -69,15 +69,15 @@ class ExternalConfigInfoTagPersistServiceImplTest {
     
     MockedStatic<DynamicDataSource> dynamicDataSourceMockedStatic;
     
-    @Mock
+    @MockitoBean
     DynamicDataSource dynamicDataSource;
     
     private ExternalConfigInfoTagPersistServiceImpl externalConfigInfoTagPersistService;
     
-    @Mock
+    @MockitoBean
     private DataSourceService dataSourceService;
     
-    @Mock
+    @MockitoBean
     private JdbcTemplate jdbcTemplate;
     
     private TransactionTemplate transactionTemplate = TestCaseUtils.createMockTransactionTemplate();

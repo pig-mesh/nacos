@@ -19,7 +19,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.alibaba.nacos</groupId>
+        <groupId>io.github.pig-mesh.nacos</groupId>
         <artifactId>nacos-all</artifactId>
         <version>${revision}</version>
     </parent>
@@ -42,12 +42,12 @@
             <artifactId>nacos-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-copilot</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-ai</artifactId>
         </dependency>
         <dependency>
@@ -55,7 +55,7 @@
             <artifactId>nacos-lock</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>nacos-maintainer-client</artifactId>
         </dependency>
 
@@ -95,6 +95,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-ldap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <!-- TODO: Replace hard Derby class references in NacosRuntimeHints with optional reflection registration to remove this compile dependency. -->
@@ -109,6 +113,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
@@ -119,7 +128,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.nacos</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>default-auth-plugin</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
@@ -169,7 +178,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.alibaba.nacos</groupId>
+                    <groupId>${project.groupId}</groupId>
                     <artifactId>nacos-default-plugin-all</artifactId>
                     <version>${project.version}</version>
                 </dependency>

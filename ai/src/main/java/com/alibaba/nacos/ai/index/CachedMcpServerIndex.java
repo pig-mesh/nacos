@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 
 import com.alibaba.nacos.ai.constant.Constants;
 import com.alibaba.nacos.ai.model.mcp.McpServerIndexData;

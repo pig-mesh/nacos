@@ -35,7 +35,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -67,13 +67,13 @@ public class EmbeddedConfigInfoGrayPersistServiceImplTest {
     
     private EmbeddedConfigInfoGrayPersistServiceImpl embeddedConfigInfoGrayPersistService;
     
-    @Mock
+    @MockitoBean
     private DataSourceService dataSourceService;
     
-    @Mock
+    @MockitoBean
     private IdGeneratorManager idGeneratorManager;
     
-    @Mock
+    @MockitoBean
     private HistoryConfigInfoPersistService historyConfigInfoPersistService;
     
     MockedStatic<EnvUtil> envUtilMockedStatic;
@@ -82,10 +82,10 @@ public class EmbeddedConfigInfoGrayPersistServiceImplTest {
     
     MockedStatic<DynamicDataSource> dynamicDataSourceMockedStatic;
     
-    @Mock
+    @MockitoBean
     DynamicDataSource dynamicDataSource;
     
-    @Mock
+    @MockitoBean
     DatabaseOperate databaseOperate;
     
     /**

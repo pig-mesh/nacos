@@ -26,7 +26,7 @@ import com.alibaba.nacos.config.server.utils.PropertyUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.dao.DuplicateKeyException;
@@ -56,13 +56,13 @@ class CapacityServiceTest {
     
     private CapacityService service;
     
-    @Mock
+    @MockitoBean
     private GroupCapacityPersistService groupCapacityPersistService;
     
-    @Mock
+    @MockitoBean
     private TenantCapacityPersistService tenantCapacityPersistService;
     
-    @Mock
+    @MockitoBean
     private ConfigInfoPersistService configInfoPersistService;
     
     @BeforeEach

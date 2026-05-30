@@ -22,8 +22,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.web.context.WebServerApplicationContext;
-import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.boot.web.server.WebServer;
+import org.springframework.boot.web.server.context.WebServerApplicationContext;
+import org.springframework.boot.web.server.context.WebServerInitializedEvent;
 
 import jakarta.servlet.ServletContext;
 
@@ -51,7 +52,7 @@ class NacosWebServerListenerTest {
     private WebServerApplicationContext applicationContext;
     
     @Mock
-    private org.springframework.boot.web.server.WebServer webServer;
+    private WebServer webServer;
     
     private NacosWebServerListener listener;
     

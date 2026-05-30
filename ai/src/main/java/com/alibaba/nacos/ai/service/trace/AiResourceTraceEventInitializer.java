@@ -20,7 +20,7 @@ import com.alibaba.nacos.common.trace.event.ai.AiResourceTraceEvent;
 import com.alibaba.nacos.core.trace.NacosCombinedTraceSubscriber;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 /**
  * AI resource trace event initializer.

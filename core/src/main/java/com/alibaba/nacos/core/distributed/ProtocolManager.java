@@ -31,7 +31,7 @@ import com.alibaba.nacos.sys.utils.ApplicationUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;

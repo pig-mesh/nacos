@@ -244,6 +244,9 @@ public class InternetAddressUtil {
      * @return int
      */
     public static int ipToInt(String ip) {
+        if (!isIpv4(ip)) {
+            throw new IllegalArgumentException(ip + " is invalid IP");
+        }
         try {
             return bytesToInt(ipToBytesByInet(ip));
         } catch (Exception e) {

@@ -25,7 +25,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -37,7 +37,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 public class NamespaceConfigInfoServiceTest {
     
-    @Mock
+    @MockitoBean
     private ConfigInfoPersistService configInfoPersistService;
     
     MockedStatic<EnvUtil> propertyUtilMockedStatic;
