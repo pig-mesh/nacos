@@ -42,6 +42,8 @@ class DatasourceConstantsTest {
         assertEquals("needContent", ContextConstant.NEED_CONTENT);
         assertEquals("mysql", DataSourceConstant.MYSQL);
         assertEquals("postgresql", DatabaseTypeConstant.POSTGRESQL);
+        assertEquals("dm", DataSourceConstant.DM);
+        assertEquals("dm", DatabaseTypeConstant.DM);
         assertEquals("tenantId", FieldConstant.TENANT_ID);
         assertEquals("config_info", TableConstant.CONFIG_INFO);
         assertArrayEquals(new String[] {"id"}, PrimaryKeyConstant.LOWER_RETURN_PRIMARY_KEYS);

@@ -45,7 +45,7 @@ those repositories.
 
 | Concept | Meaning |
 |---------|---------|
-| SQL platform | Deployment-selected database type, such as `derby`, `mysql`, `postgresql`, or `oracle`. |
+| SQL platform | Deployment-selected database type, such as `derby`, `mysql`, `postgresql`, `oracle`, or `dm`. |
 | Dialect | Database-level SQL behavior such as pagination, generated keys, and functions. |
 | Mapper | Table-level SQL provider for one logical Nacos table and one database type. |
 | Logical schema | Nacos table and column semantics shared by all databases. |
@@ -64,7 +64,7 @@ Dialect implementations provide `DatabaseDialect`.
 
 | Method | Requirement |
 |--------|-------------|
-| `getType()` | Stable database type, such as `derby`, `mysql`, `postgresql`, or `oracle`. |
+| `getType()` | Stable database type, such as `derby`, `mysql`, `postgresql`, `oracle`, or `dm`. |
 | `getLimitTopSqlWithMark(sql)` | Add placeholder-based top limit SQL. |
 | `getLimitPageSqlWithMark(sql)` | Add placeholder-based page SQL. |
 | `getLimitPageSql(sql, pageNo, pageSize)` | Add page SQL with numeric values. |

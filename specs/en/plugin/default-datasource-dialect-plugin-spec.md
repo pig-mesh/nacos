@@ -37,6 +37,7 @@ The current implementation packages these database families:
 | `mysql` | `MysqlDatabaseDialect` and `DefaultDatabaseDialect` | `impl.mysql` |
 | `postgresql` | `PostgresqlDatabaseDialect` | `impl.postgresql` |
 | `oracle` | `OracleDatabaseDialect` | `impl.oracle` |
+| `dm` | `DamengDatabaseDialect` | `impl.dameng` |
 
 Each database package must register both
 `com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect` and

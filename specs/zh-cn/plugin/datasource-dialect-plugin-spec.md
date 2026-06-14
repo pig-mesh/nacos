@@ -39,7 +39,7 @@ mapper 层。
 
 | 概念 | 含义 |
 |------|------|
-| SQL platform | 部署选择的数据库类型，例如 `derby`、`mysql`、`postgresql`、`oracle`。 |
+| SQL platform | 部署选择的数据库类型，例如 `derby`、`mysql`、`postgresql`、`oracle`、`dm`。 |
 | Dialect | 数据库级 SQL 行为，例如分页、生成主键和函数。 |
 | Mapper | 某个逻辑 Nacos 表在某个数据库类型下的表级 SQL provider。 |
 | Logical schema | 所有数据库共享的 Nacos 表和列语义。 |
@@ -56,7 +56,7 @@ dialect 和另一个数据库的 mapper 是无效行为。
 
 | 方法 | 要求 |
 |------|------|
-| `getType()` | 稳定数据库类型，例如 `derby`、`mysql`、`postgresql` 或 `oracle`。 |
+| `getType()` | 稳定数据库类型，例如 `derby`、`mysql`、`postgresql`、`oracle` 或 `dm`。 |
 | `getLimitTopSqlWithMark(sql)` | 增加基于占位符的 top limit SQL。 |
 | `getLimitPageSqlWithMark(sql)` | 增加基于占位符的分页 SQL。 |
 | `getLimitPageSql(sql, pageNo, pageSize)` | 增加带数字值的分页 SQL。 |

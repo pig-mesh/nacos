@@ -34,6 +34,7 @@ Nacos 服务端发行包一起发布的数据库方言和表级 mapper，是
 | `mysql` | `MysqlDatabaseDialect` 和 `DefaultDatabaseDialect` | `impl.mysql` |
 | `postgresql` | `PostgresqlDatabaseDialect` | `impl.postgresql` |
 | `oracle` | `OracleDatabaseDialect` | `impl.oracle` |
+| `dm` | `DamengDatabaseDialect` | `impl.dameng` |
 
 每个数据库包必须同时注册
 `com.alibaba.nacos.plugin.datasource.dialect.DatabaseDialect` 和

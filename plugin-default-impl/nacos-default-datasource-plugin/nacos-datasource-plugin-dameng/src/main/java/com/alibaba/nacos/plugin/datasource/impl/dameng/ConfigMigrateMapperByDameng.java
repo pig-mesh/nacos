@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2022 Alibaba Group Holding Ltd.
+ * Copyright 1999-2024 Alibaba Group Holding Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.alibaba.nacos.plugin.datasource.constants;
+package com.alibaba.nacos.plugin.datasource.impl.dameng;
+
+import com.alibaba.nacos.plugin.datasource.constants.DatabaseTypeConstant;
+import com.alibaba.nacos.plugin.datasource.mapper.ConfigMigrateMapper;
 
 /**
- * The data source name.
+ * The type Config migrate mapper by dameng.
  *
- * @author hyx
- **/
+ * @author Sunrisea
+ */
+public class ConfigMigrateMapperByDameng extends AbstractMapperByDameng
+    implements ConfigMigrateMapper {
 
-public class DataSourceConstant {
-
-    public static final String MYSQL = "mysql";
-
-    public static final String DERBY = "derby";
-
-    public static final String ORACLE = "oracle";
-
-    public static final String DM = "dm";
+    @Override
+    public String getDataSource() {
+        return DatabaseTypeConstant.DM;
+    }
 }
