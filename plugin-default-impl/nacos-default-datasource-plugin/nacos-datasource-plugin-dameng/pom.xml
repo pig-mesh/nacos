@@ -28,6 +28,11 @@
     <artifactId>nacos-datasource-plugin-dameng</artifactId>
     <name>nacos-datasource-plugin-dameng ${project.version}</name>
 
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <central.skipPublishing>false</central.skipPublishing>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
